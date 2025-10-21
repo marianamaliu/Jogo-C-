@@ -47,7 +47,6 @@ int main(){
     }
 
     endwin(); //limpa a tela 
-
     return 0;
 }
 
@@ -104,7 +103,6 @@ void desenhar(){
 
     //desenhar comida
     telaBuffer[comida.y][comida.x] = '$';
-
 
     //desenhar cobra
     for(int i=0; i<cobra.comprimento; i++){
