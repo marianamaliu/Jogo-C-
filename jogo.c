@@ -26,6 +26,8 @@ Cobra cobra;
 Comida comida;
 bool gameOver = FALSE;
 
+int score = 0;
+
 char telaBuffer[ALTURA][LARGURA];
 
 void gerar_comida();
@@ -118,6 +120,9 @@ void desenhar(){
         }
     }
 
+    //pontuação na tela
+    mvprintw(ALTURA, 0, "SCORE: %d", score);
+
     refresh(); //sicroniza a tela virtual com a tela fusica (manda as mudanças para o terminal)
 }
 
@@ -134,9 +139,14 @@ void atualizar_posi(){
     //detectar COLISÃO com a COMIDA
     if(novoX==comida.x && novoY==comida.y){
         cobra.comprimento++;
+        score+=10;
         gerar_comida();
     }
 
+    for(int i=cobra.comprimento-1; i>0; i--){
+        cobra.x[i]=cobra.x[i-1];
+        cobra.y[i]=cobra.y[i-1];
+    }
 
     cobra.x[0] = novoX;
     cobra.y[0] = novoY;
